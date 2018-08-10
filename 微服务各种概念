@@ -54,7 +54,11 @@
     更新库存（调用商品服务）
     订单入库
 
-四、应用间通信
+四、应用间通信 HTTP vs RPC
+· Spring: HTTP Restful
+    RestTemplate / Feign
+    订单服务调用商品服务，商品服务可以作为服务端，订单服务作为客户端
+· Dubbo: RPC
 
 
 
