@@ -55,11 +55,23 @@
     订单入库
 
 四、应用间通信 HTTP vs RPC
-· Spring: HTTP Restful
+1. Spring: HTTP Restful
     RestTemplate / Feign
     订单服务调用商品服务，商品服务可以作为服务端，订单服务作为客户端
-· Dubbo: RPC
-
+2. Dubbo: RPC
+3. 客户端负载均衡器：Ribbon
+    - RestTemplate
+    - Feign
+    - Zuul
+4. Ribbon
+· 服务发现
+· 服务选择规则
+· 服务监听
+· 主要组件：ServerList, IRule, ServerListFilter
+过程: 先通过ServerList或许所有的可用服务列表
+     然后通过ServerListFilter过滤掉一部分地址
+     剩下的地址中IRule选择作为最终结果
+     常用的Rule: 轮循RoundRobin, 随机RandomRule
 
 
 
