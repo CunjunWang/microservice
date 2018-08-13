@@ -1,10 +1,10 @@
 package com.cunjunwang.product.service.impl;
 
-import com.cunjunwang.product.DTO.CartDTO;
 import com.cunjunwang.product.dataobject.ProductInfo;
+import com.cunjunwang.product.dto.CartDTO;
 import com.cunjunwang.product.enums.ProductStatusEnum;
 import com.cunjunwang.product.enums.ResultEnum;
-import com.cunjunwang.product.exceptions.ProductException;
+import com.cunjunwang.product.exception.ProductException;
 import com.cunjunwang.product.repository.ProductInfoRepository;
 import com.cunjunwang.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,24 +33,26 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
-        for(CartDTO cartDTO : cartDTOList) {
+        for (CartDTO cartDTO : cartDTOList) {
             Optional<ProductInfo> productInfoOptional = productInfoRepository.findById(cartDTO.getProductId());
-            if(!productInfoOptional.isPresent()) {
+
+            // 判断商品是否存在
+            if (!productInfoOptional.isPresent()) {
                 throw new ProductException(ResultEnum.PRODUCT_NOT_EXIST);
             }
 
-            ProductInfo productionInfo = productInfoOptional.get();
-            Integer result = productionInfo.getProductStock() - cartDTO.getProductQuantity();
+            ProductInfo productInfo = productInfoOptional.get();
 
+            // 判断库存是否足够
+            Integer result = productInfo.getProductStock() - cartDTO.getProductQuantity();
             if (result < 0) {
                 throw new ProductException(ResultEnum.PRODUCT_STOCK_ERROR);
             }
 
-            productionInfo.setProductStock(result);
-            productInfoRepository.save(productionInfo);
+            productInfo.setProductStock(result);
+
+            productInfoRepository.save(productInfo);
 
         }
     }
-
-
 }

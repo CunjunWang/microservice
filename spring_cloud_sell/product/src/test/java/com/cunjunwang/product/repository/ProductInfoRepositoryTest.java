@@ -26,7 +26,7 @@ public class ProductInfoRepositoryTest {
 
     @Test
     public void findByProductIdIn() {
-        List<ProductInfo> list = repository.findByProductIdIn(Arrays.asList("123456"));
+        List<ProductInfo> list = repository.findByProductIdIn(Arrays.asList("123456", "4234"));
         Assert.assertTrue(list.size() > 0);
     }
 }

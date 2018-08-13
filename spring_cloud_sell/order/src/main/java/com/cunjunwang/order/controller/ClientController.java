@@ -1,10 +1,15 @@
 package com.cunjunwang.order.controller;
 
 import com.cunjunwang.order.client.ProductClient;
+import com.cunjunwang.order.dataobject.ProductInfo;
+import com.cunjunwang.order.dto.CartDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -18,6 +23,18 @@ public class ClientController {
 
     @GetMapping("/getProductMsg")
     public String getProductMsg() {
+
+        String response = productClient.productMsg();
+        log.info("response = {}", response);
+        return response;
+    }
+
+    @GetMapping("/getProductList")
+    public String getProductList() {
+        List<ProductInfo> productInfoList = productClient.listForOrder(Arrays.asList("123456"));
+        log.info("response={}", productInfoList);
+        return "ok";
+    }
 
 //        // 第一种方式 直接用restTemplate. url hard code
 //        // RestTemplate restTemplate = new RestTemplate();
@@ -35,9 +52,9 @@ public class ClientController {
 ////
 
 
-        String response = productClient.productMsg();
-        log.info("response = {}", response);
-        return response;
-
+    @GetMapping("/productDecreaseStock")
+    public String productDecreaseStock(){
+        productClient.decreaseStock(Arrays.asList(new CartDTO("123456", 6)));
+        return "Stock updated!";
     }
 }

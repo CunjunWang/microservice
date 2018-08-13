@@ -1,4 +1,4 @@
-package com.cunjunwang.product.dataobject;
+package com.cunjunwang.order.dataobject;
 
 
 import lombok.Data;

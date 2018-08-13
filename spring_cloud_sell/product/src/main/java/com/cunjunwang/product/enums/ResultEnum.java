@@ -3,14 +3,14 @@ package com.cunjunwang.product.enums;
 import lombok.Getter;
 
 /**
- * Created by CunjunWang on 2018/8/12.
+ * Created by CunjunWang on 2018/8/13.
  */
 
 @Getter
 public enum ResultEnum {
 
-    PRODUCT_NOT_EXIST(1, "Product not exist"),
-    PRODUCT_STOCK_ERROR(2, "Error in stock");
+    PRODUCT_NOT_EXIST(1, "product not exist"),
+    PRODUCT_STOCK_ERROR(2, "not enough stock");
 
     private Integer code;
 
@@ -20,6 +20,4 @@ public enum ResultEnum {
         this.code = code;
         this.message = message;
     }
-
-
 }

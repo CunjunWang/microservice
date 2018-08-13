@@ -6,15 +6,13 @@ import com.cunjunwang.product.VO.ProductVO;
 import com.cunjunwang.product.VO.ResultVO;
 import com.cunjunwang.product.dataobject.ProductCategory;
 import com.cunjunwang.product.dataobject.ProductInfo;
+import com.cunjunwang.product.dto.CartDTO;
 import com.cunjunwang.product.service.CategoryService;
 import com.cunjunwang.product.service.ProductService;
 import com.cunjunwang.product.utils.ResultVOUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,18 +37,18 @@ public class ProductController {
     @GetMapping("/list")
     public ResultVO<ProductVO> list() {
 
-//        1. 查询所有在架商品
+        // 1. 查询所有在架商品
         List<ProductInfo> productInfoList = productService.findUpAll();
 
-//        2. 获取类目type列表
+        // 2. 获取类目type列表
         List<Integer> categoryTypeList = productInfoList.stream()
                 .map(ProductInfo::getCategoryType)
                 .collect(Collectors.toList());
 
-//        3. 从数据库查询类目
+        // 3. 从数据库查询类目
         List<ProductCategory> categoryList = categoryService.findByCategoryTypeIn(categoryTypeList);
 
-//        4. 构造数据
+        // 4. 构造数据
         List<ProductVO> productVOList = new ArrayList<>();
 
         for (ProductCategory productCategory : categoryList) {
@@ -76,9 +74,14 @@ public class ProductController {
         return ResultVOUtil.success(productVOList);
     }
 
-    // 获取商品列表 (给订单服务用)
-    @GetMapping("/listForOrder")
+    // 用了@RequestBody, 一定要用@PostMapping
+    @PostMapping("/listForOrder")
     public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList) {
         return productService.findList(productIdList);
+    }
+
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList) {
+        productService.decreaseStock(cartDTOList);
     }
 }

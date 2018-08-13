@@ -1,9 +1,9 @@
-package com.cunjunwang.product.exceptions;
+package com.cunjunwang.product.exception;
 
 import com.cunjunwang.product.enums.ResultEnum;
 
 /**
- * Created by CunjunWang on 2018/8/12.
+ * Created by CunjunWang on 2018/8/13.
  */
 public class ProductException extends RuntimeException {
 
@@ -18,5 +18,4 @@ public class ProductException extends RuntimeException {
         super(resultEnum.getMessage());
         this.code = resultEnum.getCode();
     }
-
 }

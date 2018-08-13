@@ -1,4 +1,4 @@
-package com.cunjunwang.product.dto;
+package com.cunjunwang.order.dto;
 
 import lombok.Data;
 

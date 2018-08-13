@@ -6,7 +6,10 @@ import lombok.Getter;
 public enum ResultEnum {
 
     PARAM_ERROR(1, "parameter error"),
-    CART_EMPTY(2, "Cart is empty");
+    CART_EMPTY(2, "Cart is empty"),
+    ORDER_NOT_EXIST(3, "Order does not exist"),
+    ORDER_STATUS_ERROR(4, "Order status error"),
+    ORDER_DETAIL_NOT_EXIST(5, "Order detail not exist");
 
     private Integer code;
 
