@@ -1,12 +1,16 @@
 package com.cunjunwang.product.service.impl;
 
 import com.cunjunwang.product.common.DecreaseStockInput;
+import com.cunjunwang.product.common.ProductInfoOutput;
 import com.cunjunwang.product.dataobject.ProductInfo;
 import com.cunjunwang.product.enums.ProductStatusEnum;
 import com.cunjunwang.product.enums.ResultEnum;
 import com.cunjunwang.product.exception.ProductException;
 import com.cunjunwang.product.repository.ProductInfoRepository;
 import com.cunjunwang.product.service.ProductService;
+import com.cunjunwang.product.utils.JsonUtil;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository productInfoRepository;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Override
     public List<ProductInfo> findUpAll() {
@@ -36,12 +43,10 @@ public class ProductServiceImpl implements ProductService {
 
         for (DecreaseStockInput decreaseStockInput : decreaseStockInputList) {
             Optional<ProductInfo> productInfoOptional = productInfoRepository.findById(decreaseStockInput.getProductId());
-
             // 判断商品是否存在
             if (!productInfoOptional.isPresent()) {
                 throw new ProductException(ResultEnum.PRODUCT_NOT_EXIST);
             }
-
             ProductInfo productInfo = productInfoOptional.get();
 
             // 判断库存是否足够
@@ -51,8 +56,12 @@ public class ProductServiceImpl implements ProductService {
             }
 
             productInfo.setProductStock(result);
-
             productInfoRepository.save(productInfo);
+
+            // 发送MQ消息
+            ProductInfoOutput output = new ProductInfoOutput();
+            BeanUtils.copyProperties(productInfo, output);
+            amqpTemplate.convertAndSend("productInfo", JsonUtil.toJson(output));
         }
     }
 }
