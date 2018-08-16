@@ -1,17 +1,12 @@
 spring:
   application:
-    name: order
+    name: api-gateway
   cloud:
     config:
       discovery:
         enabled: true
         service-id: CONFIG
-      profile: test
-    stream:
-      bindings:
-        myMessage:
-          group: order
-          content-type: application/json
+      profile: dev
 eureka:
   client:
     service-url:
