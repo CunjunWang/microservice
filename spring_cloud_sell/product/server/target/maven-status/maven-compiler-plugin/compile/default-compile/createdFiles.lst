@@ -6,6 +6,7 @@ com/cunjunwang/product/VO/ProductInfoVO.class
 com/cunjunwang/product/service/CategoryService.class
 com/cunjunwang/product/VO/ResultVO.class
 com/cunjunwang/product/service/impl/ProductServiceImpl.class
+com/cunjunwang/product/utils/JsonUtil.class
 com/cunjunwang/product/exception/ProductException.class
 com/cunjunwang/product/service/impl/CategoryServiceImpl.class
 com/cunjunwang/product/utils/ResultVOUtil.class
