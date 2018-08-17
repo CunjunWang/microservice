@@ -155,6 +155,15 @@ docker run -d --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3.7.3-ma
     Nginx和Zuul混搭
 
 
+consul manager:
+对标红的服务告警 取出所有列表放入hashtable 如果online变成offline进行告警 发送过告警的hashtable
+如果发过告警 记录时间
+
+
+
+
+
+
 
 
 
