@@ -122,7 +122,9 @@
     · 应用解耦
 3. Spring Cloud Stream
     Stream: 应用与消息之间的粘合
+    
 docker run -d --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3.7.3-management
+docker run -d --hostname my-redis -p 6379:6379 redis:4.0.8
 
 七、服务网关 API-GATEWAY
 1. 要素
@@ -153,11 +155,12 @@ docker run -d --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3.7.3-ma
 5. Zuul的高可用
     多个Zuul节点注册到server
     Nginx和Zuul混搭
+6. Zuul的限流 放在pre种
+    时机：放在请求被转发之前调用 限流早于鉴权
+    常见：令牌桶限流 token bucket
+    google guava服务有现成实现
+7. Zuul的权限校验
 
-
-consul manager:
-对标红的服务告警 取出所有列表放入hashtable 如果online变成offline进行告警 发送过告警的hashtable
-如果发过告警 记录时间
 
 
 
