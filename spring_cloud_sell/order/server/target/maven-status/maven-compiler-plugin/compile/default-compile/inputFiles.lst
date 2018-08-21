@@ -15,6 +15,7 @@
 /Users/CunjunWang/Desktop/microservice/spring_cloud_sell/order/server/src/main/java/com/cunjunwang/order/exceptions/OrderException.java
 /Users/CunjunWang/Desktop/microservice/spring_cloud_sell/order/server/src/main/java/com/cunjunwang/order/enums/PaymentStatusEnum.java
 /Users/CunjunWang/Desktop/microservice/spring_cloud_sell/order/server/src/main/java/com/cunjunwang/order/VO/ResultVO.java
+/Users/CunjunWang/Desktop/microservice/spring_cloud_sell/order/server/src/main/java/com/cunjunwang/order/controller/HystrixController.java
 /Users/CunjunWang/Desktop/microservice/spring_cloud_sell/order/server/src/main/java/com/cunjunwang/order/controller/TrnController.java
 /Users/CunjunWang/Desktop/microservice/spring_cloud_sell/order/server/src/main/java/com/cunjunwang/order/dataobject/ProductInfo.java
 /Users/CunjunWang/Desktop/microservice/spring_cloud_sell/order/server/src/main/java/com/cunjunwang/order/dataobject/OrderDetail.java

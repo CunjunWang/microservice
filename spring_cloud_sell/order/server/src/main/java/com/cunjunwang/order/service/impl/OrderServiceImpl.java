@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
 
-        // 查询商品信息
+        // 查询商品信息(调用商品服务)
         String orderId = KeyUtil.getUniqueKey();
         List<String> productIdList = orderDTO.getOrderDetailList()
                 .stream().map(OrderDetail::getProductId)

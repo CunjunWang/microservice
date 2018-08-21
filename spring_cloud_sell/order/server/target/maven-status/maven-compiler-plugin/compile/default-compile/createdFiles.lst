@@ -1,4 +1,5 @@
 com/cunjunwang/order/converter/OrderForm2OrderDTOConverter$1.class
+com/cunjunwang/order/message/ProductInfoReceiver$1.class
 com/cunjunwang/order/utils/KeyUtil.class
 com/cunjunwang/order/dataobject/ProductInfo.class
 com/cunjunwang/order/message/StreamClient.class
@@ -27,4 +28,5 @@ com/cunjunwang/order/service/impl/OrderServiceImpl.class
 com/cunjunwang/order/dataobject/OrderDetail.class
 com/cunjunwang/order/config/TrnConfig.class
 com/cunjunwang/order/enums/OrderStatusEnum.class
+com/cunjunwang/order/controller/HystrixController.class
 com/cunjunwang/order/controller/TrnController.class

@@ -162,10 +162,34 @@ docker run -d --hostname my-redis -p 6379:6379 redis:4.0.8
 7. Zuul的权限校验
     · 在前置过滤器中实现相关逻辑
     · 分布式Session VS OAuth2
+8. Zuul跨域
+    · 在被调用的类或方法上添加@CrossOrigin注解 (不好)
+    · 在Zuul里增加CorsFilter过滤器
 
+八、服务容错
+1. 雪崩效应
+    
+        调用        调用
+    A   --->   B   --->   C
+        ^           ^
+        |           |
+        |           |
+        |           |
+        |    导致    |
 
+       失败  <---   失败
 
-
+    防雪崩机制：Spring Cloud Hystrix
+    功能：
+        · 服务降级
+        · 依赖隔离
+        · 服务熔断
+        · 监控
+2. 服务降级
+    优先核心服务，非核心服务不可用或若可用
+    通过HystrixCommand注解指定
+    fallbackMethod（回退函数）时间具体降级逻辑
+    
 
 
 
