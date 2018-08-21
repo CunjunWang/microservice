@@ -13,6 +13,7 @@
 - 数据库：MySQL
 - 缓存：Redis
 - 部署：Docker + Rancher
+- 依赖管理：Maven
 
 ## 各模块简介
 - eureka: 服务注册中心和服务订阅中心，服务调用中转站
