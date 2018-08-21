@@ -13,7 +13,7 @@ import java.util.List;
  * Created by CunjunWang on 2018/8/14.
  */
 @Component
-@FeignClient(name = "product")
+@FeignClient(name = "product", fallback = ProductClient.ProductClientFallback.class)
 public interface ProductClient {
 
     @PostMapping("/product/listForOrder")
@@ -21,5 +21,20 @@ public interface ProductClient {
 
     @PostMapping("/product/decreaseStock")
     void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList);
+
+
+    @Component
+    static class ProductClientFallback implements ProductClient {
+
+        @Override
+        public List<ProductInfoOutput> listForOrder(List<String> productIdList) {
+            return null;
+        }
+
+        @Override
+        public void decreaseStock(List<DecreaseStockInput> decreaseStockInputList) {
+
+        }
+    }
 }
 

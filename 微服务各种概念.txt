@@ -189,7 +189,35 @@ docker run -d --hostname my-redis -p 6379:6379 redis:4.0.8
     优先核心服务，非核心服务不可用或若可用
     通过HystrixCommand注解指定
     fallbackMethod（回退函数）时间具体降级逻辑
-    
+3. 依赖隔离
+    · 线程池隔离
+    · Hystrix自动实现依赖隔离
+4. 服务熔断
+    当某个服务单元发生故障，切断主逻辑调用 类似于电路断路器
+    circuitBreaker.requestVolumeThreshold: 断路器最小请求数
+    circuitBreaker.sleepWindowInMilliseconds: 休眠时间范围
+        降级逻辑暂时成为主逻辑 这个时间过去后会变成半熔断状态重新向主逻辑发送一个请求
+        如果请求成功则断路器关闭 请求失败则回到熔断状态
+    circuitBreaker.errorThresholdPercentage: 断路器打开最小错误比例
+
+九、服务追踪
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
