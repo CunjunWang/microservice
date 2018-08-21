@@ -13,3 +13,12 @@
 - 数据库：MySQL
 - 缓存：Redis
 - 部署：Docker + Rancher
+
+## 各模块简介
+- eureka: 服务注册中心和服务订阅中心，服务调用中转站
+- client: 测试用客户端
+- config: 统一配置管理中心
+- order: 订单服务中心
+- product: 产品服务中心
+- user: 用户服务中心
+- api-gateway: 服务网关，把控、管理、转发服务间的交互 同时管理整体与外界交互
