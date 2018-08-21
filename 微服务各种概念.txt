@@ -160,6 +160,8 @@ docker run -d --hostname my-redis -p 6379:6379 redis:4.0.8
     常见：令牌桶限流 token bucket
     google guava服务有现成实现
 7. Zuul的权限校验
+    · 在前置过滤器中实现相关逻辑
+    · 分布式Session VS OAuth2
 
 
 
